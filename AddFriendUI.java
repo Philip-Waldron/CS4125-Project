@@ -4,10 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
 public class AddFriendUI {
@@ -18,7 +15,7 @@ public class AddFriendUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void newScreen2() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -44,7 +41,7 @@ public class AddFriendUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 239);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
