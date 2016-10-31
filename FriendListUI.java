@@ -49,7 +49,7 @@ public class FriendListUI {
 		lblYourFriends.setBounds(22, 13, 151, 16);
 		frame.getContentPane().add(lblYourFriends);
 		
-		JList list = new JList();
+		JList<String> list = new JList<String>();
 		list.setBounds(22, 42, 252, 348);
 		frame.getContentPane().add(list);
 		
@@ -58,8 +58,9 @@ public class FriendListUI {
 		frame.getContentPane().add(btnEditNickname);
 		btnEditNickname.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditNickUI en = new EditNickUI();
-				en.newScreen();
+				
+				// edit nickname for selected player
+				EditNickUI.newScreen();
 			}
 		});
 		
@@ -79,8 +80,7 @@ public class FriendListUI {
 		frame.getContentPane().add(btnAddFriend);
 		btnAddFriend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddFriendUI af = new AddFriendUI();
-				af.newScreen2();
+				AddFriendUI.newScreen2();
 			}
 		});
 		
