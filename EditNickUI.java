@@ -1,4 +1,4 @@
-package test;
+package friends;
 
 import java.awt.EventQueue;
 
