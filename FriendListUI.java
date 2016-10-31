@@ -56,17 +56,43 @@ public class FriendListUI {
 		JButton btnEditNickname = new JButton("Edit nickname");
 		btnEditNickname.setBounds(286, 144, 124, 48);
 		frame.getContentPane().add(btnEditNickname);
+		btnEditNickname.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditNickUI en = new EditNickUI();
+				en.newScreen();
+			}
+		});
 		
 		JButton btnInviteToGame = new JButton("Invite to game");
 		btnInviteToGame.setBounds(286, 205, 124, 48);
 		frame.getContentPane().add(btnInviteToGame);
+		btnInviteToGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// send game invite to selected friend
+				
+			}
+		});
 		
 		JButton btnAddFriend = new JButton("Add new friend");
 		btnAddFriend.setBounds(286, 39, 124, 49);
 		frame.getContentPane().add(btnAddFriend);
+		btnAddFriend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddFriendUI af = new AddFriendUI();
+				af.newScreen2();
+			}
+		});
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(313, 358, 97, 32);
 		frame.getContentPane().add(btnBack);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//go back to main menu
+				
+			}
+		});
 	}
 }
