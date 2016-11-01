@@ -1,44 +1,32 @@
-public class User {
-    int wins = 0, draws = 0, losses = 0, mWins = 0, mDraws = 0, mLosses = 0;
-    String uName = "", password = "";
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cs4115server;
+
+/**
+ *
+ * @author Dean
+ */
+    public class User {
+    int wins = 0, draws = 0, losses = 0;
+    String username = "", password = "";
     
     
     public User(String name, String pass)
     {
-        uName = name;
-        for(int i = 0; i<8; i++)
-            uID = uID + (char)((int)(((Math.random())*26) + 65));
+        username = name;
         password = pass;
     }
-    public User(String name, int w, int d, int l, String id)
+    public User(String name, String pass, int w, int d, int l)
     {
-        uName = name;
+        username = name;
         wins = w;
         draws = d;
         losses = l;   
-        uID = id;
-        for(int i = 0; i<6; i++)
-            uID = uID + (char)((int)(((Math.random())*26) + 65));
     }
-    public void newWin()
-    {
-        wins++;
-        mWins++;
-    }
-     public void newDraw()
-    {
-        draws++;
-        mDraws++;
-    }
-      public void newLoss()
-    {
-        losses++;
-        mLosses++;
-    }
-      public void resetMatch()
-      {
-          mWins = 0;
-          mDraws = 0;
-          mLosses = 0;
-      }
+    
+   
 }
+
