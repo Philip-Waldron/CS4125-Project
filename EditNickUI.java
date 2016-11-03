@@ -1,4 +1,4 @@
-package friends;
+package test;
 
 import java.awt.EventQueue;
 
@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 public class EditNickUI {
 
+	private String nick;
 	private JFrame frame;
 	private JTextField textField;
 	private JLabel lblEnterNickname;
@@ -16,7 +17,7 @@ public class EditNickUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void newScreen() {
+	public void newScreen() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -29,9 +30,6 @@ public class EditNickUI {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public EditNickUI() {
 		initialize();
 	}
@@ -61,5 +59,11 @@ public class EditNickUI {
 		lblEnterNickname = new JLabel("Enter nickname");
 		lblEnterNickname.setBounds(50, 47, 165, 16);
 		frame.getContentPane().add(lblEnterNickname);
+		
+		this.nick = "(" + textField.getText() + ")";
+	}
+	
+	public String getNick(){
+		return nick;
 	}
 }
