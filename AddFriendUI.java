@@ -1,4 +1,4 @@
-package friends;
+package test;
 
 import java.awt.EventQueue;
 
@@ -9,13 +9,14 @@ import javax.swing.JTextField;
 
 public class AddFriendUI {
 
+	private String name;
 	private JFrame frame;
 	private JTextField textField;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void newScreen2() {
+	public void newScreen2() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -60,5 +61,10 @@ public class AddFriendUI {
 		JLabel lblAddAFriend = new JLabel("Add a friend");
 		lblAddAFriend.setBounds(57, 34, 117, 16);
 		frame.getContentPane().add(lblAddAFriend);
+		this.name = textField.getText();
+	}
+	
+	public String getName(){
+		return name;
 	}
 }
