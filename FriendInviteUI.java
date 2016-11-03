@@ -1,10 +1,9 @@
-package friends;
+package test;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -42,7 +41,7 @@ public class FriendInviteUI {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 239);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblWantsToAdd = new JLabel("wants to add you as a friend.");
@@ -59,7 +58,7 @@ public class FriendInviteUI {
 		btnDecline.setBounds(253, 131, 121, 42);
 		frame.getContentPane().add(btnDecline);
 		
-		JLabel lblPutanamehere = new JLabel("PutANameHere");
+		JLabel lblPutanamehere = new JLabel("user'sName");
 		lblPutanamehere.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPutanamehere.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblPutanamehere.setBounds(121, 31, 193, 35);
