@@ -5,21 +5,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import javax.swing.JTextField;
 
-public class FriendInviteUI {
+public class AddFriendUI {
 
+	private String name;
 	private JFrame frame;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void newScreen2() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FriendInviteUI window = new FriendInviteUI();
+					AddFriendUI window = new AddFriendUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +32,7 @@ public class FriendInviteUI {
 	/**
 	 * Create the application.
 	 */
-	public FriendInviteUI() {
+	public AddFriendUI() {
 		initialize();
 	}
 
@@ -44,24 +45,26 @@ public class FriendInviteUI {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblWantsToAdd = new JLabel("wants to add you as a friend.");
-		lblWantsToAdd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWantsToAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblWantsToAdd.setBounds(121, 79, 193, 28);
-		frame.getContentPane().add(lblWantsToAdd);
+		textField = new JTextField();
+		textField.setBounds(57, 66, 317, 22);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
 		
-		JButton btnAccept = new JButton("Accept");
-		btnAccept.setBounds(58, 131, 121, 42);
-		frame.getContentPane().add(btnAccept);
+		JButton btnNewButton = new JButton("OK");
+		btnNewButton.setBounds(277, 123, 97, 38);
+		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnDecline = new JButton("Decline");
-		btnDecline.setBounds(253, 131, 121, 42);
-		frame.getContentPane().add(btnDecline);
+		JButton btnNewButton_1 = new JButton("Cancel");
+		btnNewButton_1.setBounds(137, 123, 106, 38);
+		frame.getContentPane().add(btnNewButton_1);
 		
-		JLabel lblPutanamehere = new JLabel("user'sName");
-		lblPutanamehere.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPutanamehere.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPutanamehere.setBounds(121, 31, 193, 35);
-		frame.getContentPane().add(lblPutanamehere);
+		JLabel lblAddAFriend = new JLabel("Add a friend");
+		lblAddAFriend.setBounds(57, 34, 117, 16);
+		frame.getContentPane().add(lblAddAFriend);
+		this.name = textField.getText();
+	}
+	
+	public String getName(){
+		return name;
 	}
 }
