@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs4115server;
+package FileServer;
 
+import FileServer.UserAdd;
+import FileServer.UserSearch;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +14,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import Player.*;
 /**
  *
  * @author Dean
@@ -36,55 +38,63 @@ public class Query extends Thread {
         }
     public void run() {
             // The thread is only started after everyone connects.
-            output.println("MESSAGE All players connected");
             // Tell the first player that it is her turn.
             // Repeatedly get commands from the client and process them.
-            while (true)  try {
-               // The thread is only started after everyone connects.
-               while (true) {
+            boolean running = true;
+            while (running == true)  try {
                     String command = input.readLine();
+                    if(command!= null)
+                    {
+                        System.out.println(command);
                     if (command.startsWith("LOGIN"))
                        {
+                           System.out.println("Handling command.");
                            String[] cA = command.substring(6).split(",");
                            UserSearch us = new UserSearch(cA[0], cA[1]);
-                           User tempUser = us.search(false);
+                           User tempUser = us.search();
                            if(tempUser==null)
                            {
                                output.println("FAILIURE The username and password do not match. Please try again");
                            }
                            else
                            {
-                               output.println("SUCCESS " + tempUser.wins + "," + tempUser.draws + "," + tempUser.losses);
+                               System.out.println("Command successful");
+                               output.println("SUCCESS " + tempUser.getW() + "," + tempUser.getD() + "," + tempUser.getL());
+                               socket.close();
+                               running = false;
                            }
-                           socket.close();
                        }
                     else if(command.startsWith("REGISTER"))
                     {
-                        String[] cA = command.substring(6).split(",");
+                        String[] cA = command.substring(9).split(",");
                            UserSearch us = new UserSearch(cA[0], cA[1]);
-                           User tempUser = us.search(true);
-                           if(tempUser==null)
+                           
+                           boolean check = us.exists();
+                           if(check == false)
                            {
                                UserAdd ua = new UserAdd(new User(cA[0], cA[1]));
                                ua.add();
+                               output.println("REGISTERED");
+                               socket.close();
+                               running = false;
                            }
                            else
                            {
                                output.println("FAILIURE The username already exists. Try again with a different username.");
-                               
                            }
-                           socket.close();
                            
                        }
+                    }
                        
-                       
-                }
                 
-            } catch (Exception e) {
-                System.out.println("Player died: " + e);
-            }    finally {
-                try {socket.close();} catch (IOException e) {}
             }
+            
+            catch (IOException e) {
+                System.out.println("User died: " + e);
+            }    /*(finally {
+                try {socket.close(); System.out.println("Socket closed.");} catch (IOException e) {}
+            }
+            */
     }
    
 }

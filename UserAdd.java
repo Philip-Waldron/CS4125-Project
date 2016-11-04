@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs4115server;
+package FileServer;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import Player.*;
 
 /**
  *
@@ -23,7 +24,7 @@ public class UserAdd {
     {
          BufferedWriter x = new BufferedWriter(new FileWriter("Usernames.txt", true));
 
-						x.write(user.username + "," + user.password + ",0,0,0");
+						x.write(user.getUsername() + "," + user.getPassword() + ",0,0,0");
 						x.newLine();
 						x.close();
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs4115User;
+package UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,28 +18,56 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import Player.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author Dean
  */
-public class LogInUI implements ActionListener {
+public class LogInUI implements ActionListener, Runnable {
 
     public JFrame frame;
     public JButton logIn, newUser;
     public JTextField uNameI;
     public JPasswordField passI;
     public JLabel info, uL, pL;
+    Socket socket;
+    PrintWriter out;
+    BufferedReader in;
+    String username;
+    JPanel mainPanel;
+    
 
     public LogInUI() {
+        try {
+            socket = new Socket("localhost", 5555);
+            out = new PrintWriter(socket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            System.out.println("Connected to server.");
+        } catch (UnknownHostException e) {
+            System.out.println("Unknown host: localhost.eng");
+            System.exit(1);
+        } catch  (IOException e) {
+            System.out.println("\nNo I/O\n" + e);
+            System.exit(1);
+        }
         frame = new JFrame("Log In");
         frame.setSize(500, 400);
-        JPanel mainPanel = new JPanel(new BorderLayout());        
+        mainPanel = new JPanel(new BorderLayout());        
         JPanel inputPanel = new JPanel(new GridLayout(2, 1));
         JPanel uPanel = new JPanel(new GridLayout(2, 1));
         JPanel pPanel = new JPanel(new GridLayout(2, 1));
         JPanel buttons = new JPanel(new GridLayout(1, 2));
-        info = new JLabel("Welcome. Please enter your username and password.");
+        info = new JLabel("Welcome. Please enter your username and password.", SwingConstants.CENTER);
         uL = new JLabel("Username");
         pL = new JLabel("Password");
         uNameI = new JTextField();
@@ -75,20 +103,85 @@ public class LogInUI implements ActionListener {
         buttons.add(newUser, BorderLayout.WEST);
         logIn.setBackground(Color.lightGray);
         newUser.setBackground(Color.lightGray);
-
         frame.setVisible(true);
-
+         run();
+        
+        
+        
+       
+      
     }
-
+     
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
         if (source == logIn) {
-            //Verify with server whether user exists and the password matches.
-            MainMenuUI  mmui = new MainMenuUI();
+            username = uNameI.getText();
+            String password = String.valueOf(passI.getPassword());
+            if(!(username.equals("")) && !(password.equals("")))
+            {
+            User uTemp = new User(username, password);
+            out.println("LOGIN "+ username + "," + password);
+            }
+             else
+            {
+                mainPanel.setBackground(Color.red);
+                info.setText("Username/password cannot be empty!");
+        }
         } 
         
         else if (source == newUser) {
             //Verify with server whether user exists with the same username.
+            username = uNameI.getText();
+            String password = String.valueOf(passI.getPassword());
+            if(!(username.equals("")) && !(password.equals("")))
+            {
+            User uTemp = new User(username, password);
+            out.println("REGISTER "+ username + "," + password);
+            
+            }
+            else
+            {
+                mainPanel.setBackground(Color.red);
+                info.setText("Username/password cannot be empty!");
         }
+        }
+    
+    }
+    public void run(){
+        String response;
+        boolean running = true;
+        while(running == true)
+      try {
+                response = in.readLine();
+                  if(response.startsWith("SUCCESS"))
+                {
+                    String[] uA = response.substring(8).split(",");
+                    User currentUser = new User(username, Integer.parseInt(uA[0]), Integer.parseInt(uA[1]), Integer.parseInt(uA[2]));
+                    JOptionPane.showMessageDialog(null, "Welcome, " + username + "!\n\nYou have " + currentUser.getW() + " wins, " + currentUser.getD() + " draws and " + currentUser.getL() + " losses.", "Login Successful", 1);
+                    frame.setVisible(false);
+                    MainMenuUI mmui = new MainMenuUI(currentUser);
+                    running = false;
+                    socket.close();
+                }
+                  else if(response.startsWith("FAILIURE"))
+                  {
+                      mainPanel.setBackground(Color.red);
+                      info.setText(response.substring(9));
+            }
+                  else if(response.startsWith("REGISTERED"))
+                {
+                    User currentUser = new User(username, 0, 0, 0);
+                    JOptionPane.showMessageDialog(null, "Welcome, " + username + "!\n\nYou have " + currentUser.getW() + " wins, " + currentUser.getD() + " draws and " + currentUser.getL() + " losses.", "Login Successful", 1);
+                    frame.setVisible(false);
+                    MainMenuUI mmui = new MainMenuUI(currentUser);
+                    running = false;
+                    socket.close();
+                }
+            }
+      
+        
+        catch (IOException e) {
+            System.out.println("\nNo I/O\n" + e);
+        }       
     }
 }

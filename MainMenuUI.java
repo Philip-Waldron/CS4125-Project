@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs4115User;
+package UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import Player.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,8 +32,10 @@ public class MainMenuUI implements ActionListener {
     public JTextField uNameI;
     public JPasswordField passI;
     public JLabel info, uL, pL;
+    User currentUser;
 
-    public MainMenuUI() {
+    public MainMenuUI(User u) {
+        currentUser = u;
         frame = new JFrame("Main Menu");
         frame.setSize(500, 339);
         JPanel mainPanel = new JPanel(new BorderLayout());         
@@ -69,17 +73,27 @@ public class MainMenuUI implements ActionListener {
         chatRoom.setBackground(Color.lightGray);
 
         frame.setVisible(true);
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+        int check = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
+        if (check == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
 
     }
-
+        });
+    }
+        
+        
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
         if (source == joinGame) {
-           
+        frame.setVisible(false);
+        GameUI gui = new GameUI(currentUser);   
         } 
         
         else if (source == friendList) {
-            //Verify with server whether user exists with the same username.
         }
         else if (source == leaderboards) {
           

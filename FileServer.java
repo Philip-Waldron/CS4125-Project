@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs4115server;
+package FileServer;
 
 import java.net.ServerSocket;
 
@@ -11,33 +11,27 @@ import java.net.ServerSocket;
  *
  * @author Dean
  */
-public class FileServer implements Runnable {
+public class FileServer extends Thread {
 
     /**
      * @param args the command line arguments
      */
     ServerSocket listener;
-     public FileServer() throws Exception {
+
+    public FileServer() throws Exception {
         listener = new ServerSocket(5555);
-        System.out.println("File Server is Running");
-        
+        start();
     }
+
     public void run() {
-        while(true) try {
-            while (true) {
-                Query lplayer = new Query(listener.accept());
-                lplayer.start();
-            }
-        } 
-        catch(Exception e)
-        {
-        }
-        finally {
-            try{
-            
-            listener.close();
-            }
-            catch(Exception e){}
+        System.out.println("File Server is Running");
+        while (true) {
+            try {
+                Query q = new Query(listener.accept());
+                q.start();
+            } catch (Exception e) {
+                System.out.println("Player died: " + e);
+            } 
         }
     }
 }

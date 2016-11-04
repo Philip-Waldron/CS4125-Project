@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs4115server;
+package GameServer;
 
+import Player.GamePlayer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,29 +13,38 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import Player.*;
 
 public class GameServer extends Thread {
-
-        /**
-         * Constructs a handler thread for a given socket and mark
-         * initializes the stream fields, displays the first two
-         * welcoming messages.
-         */
+ServerSocket listener;
         public GameServer() throws Exception {
-        ServerSocket listener = new ServerSocket(4444);
-        System.out.println("Rock Paper Scissors Server is Running");
-        try {
-            while (true) {
-                Lobby lobby = new Lobby();
-                LobbyPlayer lplayer = new LobbyPlayer(listener.accept());
+        listener = new ServerSocket(4444);
+        start();
+        
+    }
+        public void run()
+        {
+           System.out.println("Rock Paper Scissors Server is Running");
+           MatchMaker lobby = new MatchMaker();
+            while (true) try {
+                GamePlayer lplayer = new GamePlayer(listener.accept());
                 lplayer.start();
-                while(lplayer.username == "" && lplayer.score == 0);
-                lobby.lobbyA.add(lplayer);
+                System.out.println("Player joined queue.");
+                lobby.addPlayer(lplayer);
             }
-        } finally {
+            catch(Exception e)
+          {
+              System.out.println("Player died: " + e);
+          }
+          /*finally {try{
             listener.close();
         }
-    }
+          catch(IOException e)
+          {
+              System.out.println("No I/O: " + e);
+          }
+        }*/
         
         
+}
 }
