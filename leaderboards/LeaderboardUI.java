@@ -124,12 +124,12 @@ public class LeaderboardUI extends javax.swing.JFrame {
         
         pack();
     }
-	
+
+    public javax.swing.JTextField filterTextArea;
     private javax.swing.JButton alphabeticSortButton;
     private javax.swing.JLabel currentStandings;
     private javax.swing.JLabel filter;
     private javax.swing.JButton filterButton;
-    private javax.swing.JTextField filterTextArea;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable leaderboardTable;
     private javax.swing.JLabel sortMethod;
@@ -155,6 +155,7 @@ public class LeaderboardUI extends javax.swing.JFrame {
     
     public void populateTable(ArrayList<String[]> entries) {
         model = (javax.swing.table.DefaultTableModel) leaderboardTable.getModel();
+        model.setRowCount(0);
         for(int i = 0; i < entries.size(); i++) {
             String[] line = entries.get(i);
             model.addRow(line);

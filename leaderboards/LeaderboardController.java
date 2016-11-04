@@ -16,35 +16,36 @@ public class LeaderboardController {
         component.addAlphabeticButtonActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                System.out.println("Alphabetic sort button pressed");
+                populateTable("Aphabetic");
             }
         });
         
         component.addWinButtonActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                System.out.println("Win sort button pressed");
+                populateTable("Wins");
             }
         });
         
         component.addWLRatioButtonActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                System.out.println("W/L sort button pressed");
+                populateTable("WLRatio");
             }
         });
         
         component.addFilterButtonActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                System.out.println("Filter button pressed");
+                String text = component.filterTextArea.getText();
+                populateTable(text);
             }
         });
-        populateTable();
+        populateTable("raw");
     }
 
     
-    private void populateTable() {
-        component.populateTable(model.getEntries());
+    private void populateTable(String sort) {
+        component.populateTable(model.getEntries(sort));
     }
 }

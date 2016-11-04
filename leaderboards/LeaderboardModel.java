@@ -10,12 +10,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LeaderboardModel {
     private static ArrayList<String[]> entries;
     private final File leaderboards;
+    private boolean alphaSort = false;
 
     public LeaderboardModel() {
         entries = new ArrayList<>();
@@ -29,7 +31,67 @@ public class LeaderboardModel {
         }
     }
     
-    public ArrayList<String[]> getEntries() {
+    public ArrayList<String[]> getEntries(String sort) {
+        if (sort == "raw") {
+            return entries;
+        }
+        else if (sort == "Aphabetic") {
+            if (alphaSort == false) {
+                java.util.Collections.sort(entries, new Comparator<String[]>() {    
+                    @Override
+                    public int compare(String[] array1, String[] array2) {
+                    return array1[0].compareTo(array2[0]);
+                    }
+                });
+                alphaSort = true;
+            }
+            else {
+                java.util.Collections.sort(entries, new Comparator<String[]>() {    
+                    @Override
+                    public int compare(String[] array1, String[] array2) {
+                    return array2[0].compareTo(array1[0]);
+                    }
+                });
+                alphaSort = false;
+            }
+        }
+        else if (sort == "Wins") {
+            java.util.Collections.sort(entries, new Comparator<String[]>() {    
+                @Override
+                public int compare(String[] array1, String[] array2) {
+                return Integer.parseInt(array2[1]) - Integer.parseInt(array1[1]);
+                }
+            });
+            alphaSort = false;
+        }
+        else if (sort == "WLRatio") {
+            java.util.Collections.sort(entries, new Comparator<String[]>() {    
+                @Override
+                public int compare(String[] array1, String[] array2) {
+                return Double.compare(Double.parseDouble(array2[3]), Double.parseDouble(array1[3]));
+                }
+            });
+            alphaSort = false;
+        }
+        else {
+            if (sort.length() < 1) {
+                return entries;
+            }
+            else {
+                String[] filter = sort.split(",");
+                String[] temp;
+                ArrayList<String[]> entriesTemp = new ArrayList<>();
+                for(int i = 0;i < entries.size();i++) {
+                    temp = entries.get(i);
+                    if (java.util.Arrays.asList(filter).contains(temp[0])) {
+                        entriesTemp.add(temp);
+                    }
+                }
+                alphaSort = false;
+                return entriesTemp;
+            }
+        }
+
         return entries;
     }
     
@@ -45,6 +107,7 @@ public class LeaderboardModel {
         BufferedReader bufRead = new BufferedReader(input);
         String myLine;
         String wl;
+        entries.clear();
         while ((myLine = bufRead.readLine()) != null)
         {    
             String[] temp = myLine.split(",");
