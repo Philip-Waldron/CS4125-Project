@@ -1,4 +1,4 @@
-package FriendList;
+package test;
 
 import java.awt.EventQueue;
 
@@ -63,7 +63,7 @@ public class FriendListUI {
 			out.flush();
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			sendMessage("friendList user'sName");
+			sendMessage("friendList " + currentPlayer);
 			message = (String) in.readLine();
 			System.out.println("server>" + message);
 		} catch (UnknownHostException e) {
@@ -73,33 +73,9 @@ public class FriendListUI {
 			System.out.println("No I/O");
 			System.exit(1);
 		}
+		// friends list display
 		String[] listOfFriends = new String[0];
 		listOfFriends = message.split(", ");
-		
-		/* ********  SERVER SIDE
-		 * 
-		String friendsFileName = "friends.txt";
-		File aFile = new File(friendsFileName);
-		String[] listOfFriends = new String[0];
-		if (!aFile.exists()) {
-			PrintWriter output = new PrintWriter(friendsFileName);
-			// output.print(user'sName + ", ");
-			output.close();
-		} else {
-			Scanner in = new Scanner(aFile);
-			String aLineFromFile = "";
-			boolean found = false;
-			while (in.hasNext() && !found) {
-				aLineFromFile = in.nextLine();
-
-				// if user's name EQUALS the first name from the line
-				// if user'sName.startsWith(aLineFromFile.substring(0,","))
-				// found = true;
-			}
-			listOfFriends = aLineFromFile.split(", ");
-			in.close();
-		}*/
-		
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		JList<String> list = new JList<String>(listModel);
 		if (listOfFriends.length > 0) {
@@ -113,6 +89,7 @@ public class FriendListUI {
 		JButton btnEditNickname = new JButton("Edit nickname");
 		btnEditNickname.setBounds(286, 144, 124, 48);
 		frame.getContentPane().add(btnEditNickname);
+		String selected = list.getSelectedValue();
 		btnEditNickname.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -120,7 +97,7 @@ public class FriendListUI {
 				EditNickUI changeNick = new EditNickUI();
 				changeNick.newScreen();
 				String nick = changeNick.getNick();
-				sendMessage("editNickname user'sName friend'sName" + nick);
+				sendMessage("editNickname " + currentPlayer + selected + nick);
 			}
 		});
 
@@ -131,7 +108,7 @@ public class FriendListUI {
 			public void actionPerformed(ActionEvent e) {
 
 				// send game invite to selected friend
-				sendMessage("inviteToGame user'sName friend'sName");
+				sendMessage("inviteToGame " + currentPlayer + selected);
 				
 			}
 		});
@@ -143,7 +120,7 @@ public class FriendListUI {
 			public void actionPerformed(ActionEvent e) {
 				AddFriendUI addFriend = new AddFriendUI();
 				addFriend.newScreen2();
-				sendMessage("addFriend user'sName " + addFriend.getName());
+				sendMessage("addFriend " + currentPlayer + addFriend.getName());
 			}
 		});
 
