@@ -1,4 +1,4 @@
-package test;
+package FriendList;
 
 import java.awt.EventQueue;
 
@@ -63,7 +63,7 @@ public class FriendListUI {
 			out.flush();
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			sendMessage("friendList " + currentPlayer);
+			sendMessage("friendList " + currentPlayer.getUsername());
 			message = (String) in.readLine();
 			System.out.println("server>" + message);
 		} catch (UnknownHostException e) {
@@ -89,15 +89,15 @@ public class FriendListUI {
 		JButton btnEditNickname = new JButton("Edit nickname");
 		btnEditNickname.setBounds(286, 144, 124, 48);
 		frame.getContentPane().add(btnEditNickname);
-		String selected = list.getSelectedValue();
 		btnEditNickname.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				// edit nickname for selected player
 				EditNickUI changeNick = new EditNickUI();
 				changeNick.newScreen();
+				String selected = list.getSelectedValue();
 				String nick = changeNick.getNick();
-				sendMessage("editNickname " + currentPlayer + selected + nick);
+				sendMessage("editNickname " + currentPlayer.getUsername() + selected + nick);
 			}
 		});
 
@@ -108,7 +108,8 @@ public class FriendListUI {
 			public void actionPerformed(ActionEvent e) {
 
 				// send game invite to selected friend
-				sendMessage("inviteToGame " + currentPlayer + selected);
+				String selected = list.getSelectedValue();
+				sendMessage("inviteToGame " + currentPlayer.getUsername() + selected);
 				
 			}
 		});
@@ -120,7 +121,7 @@ public class FriendListUI {
 			public void actionPerformed(ActionEvent e) {
 				AddFriendUI addFriend = new AddFriendUI();
 				addFriend.newScreen2();
-				sendMessage("addFriend " + currentPlayer + addFriend.getName());
+				sendMessage("addFriend " + currentPlayer.getUsername() + addFriend.getName());
 			}
 		});
 
