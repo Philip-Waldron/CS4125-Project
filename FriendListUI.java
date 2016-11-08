@@ -58,12 +58,12 @@ public class FriendListUI {
 
 		try {
 			// socket connecting to server and input/output streams
-			socket = new Socket("localhost", 4444);
+			socket = new Socket("localhost", 5555);
 			out = new PrintWriter(socket.getOutputStream(), true);
 			out.flush();
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			sendMessage("friendList " + currentPlayer.getUsername());
+			sendMessage("friendList, " + currentPlayer.getUsername());
 			message = (String) in.readLine();
 			System.out.println("server>" + message);
 		} catch (UnknownHostException e) {
@@ -97,7 +97,7 @@ public class FriendListUI {
 				changeNick.newScreen();
 				String selected = list.getSelectedValue();
 				String nick = changeNick.getNick();
-				sendMessage("editNickname " + currentPlayer.getUsername() + selected + nick);
+				sendMessage("editNickname, " + currentPlayer.getUsername() + ", " + selected + ", " + nick);
 			}
 		});
 
@@ -109,7 +109,7 @@ public class FriendListUI {
 
 				// send game invite to selected friend
 				String selected = list.getSelectedValue();
-				sendMessage("inviteToGame " + currentPlayer.getUsername() + selected);
+				sendMessage("inviteToGame, " + currentPlayer.getUsername() + ", " + selected);
 				
 			}
 		});
@@ -121,7 +121,7 @@ public class FriendListUI {
 			public void actionPerformed(ActionEvent e) {
 				AddFriendUI addFriend = new AddFriendUI();
 				addFriend.newScreen2();
-				sendMessage("addFriend " + currentPlayer.getUsername() + addFriend.getName());
+				sendMessage("addFriend, " + currentPlayer.getUsername() + ", " + addFriend.getName());
 			}
 		});
 
