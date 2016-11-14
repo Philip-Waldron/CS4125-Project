@@ -1,0 +1,16 @@
+dean,dean,9,2,20
+g1414,asdas,0,0,0
+emilia,dean,3,0,3
+Emiliah,dee,0,0,0
+emilia123,dean,0,0,0
+deeen,aaah,0,0,0
+ah,lol,0,0,2
+jj,collins,2,0,1
+deane,male,0,0,1
+hey,guys,0,0,1
+oh,no,2,0,10
+sda,sd,0,0,0
+bep,bep,0,0,6
+ahey,lol,0,0,0
+bop,bop,0,0,1
+tester,bep,0,0,1
