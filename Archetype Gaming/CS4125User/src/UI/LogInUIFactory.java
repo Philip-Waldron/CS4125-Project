@@ -1,10 +1,5 @@
 package UI;
 
-
-/**
- *
- * @author Dean
- */
 public class LogInUIFactory extends UIFactory {
 
     public LogInUIFactory() {

@@ -2,15 +2,8 @@ package FileServer;
 
 import java.net.ServerSocket;
 
-/**
- *
- * @author Dean
- */
 public class FileServer extends Thread {
 
-    /**
-     * @param args the command line arguments
-     */
     ServerSocket listener;
 
     public FileServer() throws Exception {

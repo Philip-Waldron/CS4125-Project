@@ -8,10 +8,6 @@ import java.net.Socket;
 import Player.*;
 import java.util.ArrayList;
 
-/**
- *
- * @author Dean, Philip, Pawel
- */
 public class Query extends Thread {
 
     BufferedReader input;

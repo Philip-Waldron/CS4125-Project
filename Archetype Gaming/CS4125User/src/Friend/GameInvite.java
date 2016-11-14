@@ -1,9 +1,5 @@
 package Friend;
 
-/**
- *
- * @author Pawel
- */
 public class GameInvite {
     public boolean GameInvite(String name){
         // send invite to 'name'

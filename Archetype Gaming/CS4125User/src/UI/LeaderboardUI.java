@@ -1,9 +1,5 @@
 package UI;
 
-/**
- *
- * @author Philip Waldron
- */
 import Leaderboards.LeaderboardController;
 import Player.User;
 import java.awt.Color;

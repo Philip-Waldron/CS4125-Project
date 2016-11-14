@@ -6,10 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author Philip Waldron
- */
 public class LeaderboardSearch extends Search{
     public LeaderboardSearch(){
         

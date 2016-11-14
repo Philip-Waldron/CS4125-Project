@@ -10,10 +10,6 @@ import javax.swing.JTextField;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- *
- * @author Fergal
- */
 public class ChatRoomUI {
 
     public JFrame chatWindow;

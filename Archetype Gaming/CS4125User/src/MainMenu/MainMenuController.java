@@ -11,10 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-/**
- *
- * @author Dean
- */
 public class MainMenuController implements ActionListener {
 
     private MainMenuUI mmui;

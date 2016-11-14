@@ -1,9 +1,5 @@
 package GameServer;
 
-/**
- *
- * @author Dean
- */
 public class Match extends Thread{
 
     GamePlayer player1, player2;

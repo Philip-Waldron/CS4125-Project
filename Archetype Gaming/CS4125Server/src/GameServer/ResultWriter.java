@@ -8,10 +8,6 @@ import java.util.Scanner;
 import Player.*;
 import java.io.IOException;
 
-/**
- *
- * @author Dean
- */
 public class ResultWriter {
 
     User user;

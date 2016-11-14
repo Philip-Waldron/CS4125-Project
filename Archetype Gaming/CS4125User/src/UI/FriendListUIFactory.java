@@ -2,10 +2,6 @@ package UI;
 
 import Player.User;
 
-/**
- *
- * @author Dean
- */
 public class FriendListUIFactory extends UIFactory {
 
     User currentUser;

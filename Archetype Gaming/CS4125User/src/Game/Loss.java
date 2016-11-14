@@ -2,10 +2,6 @@ package Game;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Dean
- */
 public class Loss extends GameReport {
 
     public Loss(String[] r) {

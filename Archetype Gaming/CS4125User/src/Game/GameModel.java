@@ -10,10 +10,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Dean
- */
 public class GameModel extends Thread {
 
     private GameUI gui;

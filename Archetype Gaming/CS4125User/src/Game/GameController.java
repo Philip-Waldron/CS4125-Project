@@ -6,10 +6,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Dean
- */
 public class GameController implements ActionListener {
 
     private GameUI gui;

@@ -11,10 +11,6 @@ import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 import java.net.Socket;
 
-/**
- *
- * @author Dean
- */
 public class LogInModel extends Thread {
 
     private Socket socket;

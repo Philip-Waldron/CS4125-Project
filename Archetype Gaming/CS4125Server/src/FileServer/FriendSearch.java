@@ -7,10 +7,6 @@ import java.util.Scanner;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Pawel
- */
 public class FriendSearch extends Search {
 
     public FriendSearch(String user) {

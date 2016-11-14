@@ -5,10 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-/**
- *
- * @author Fergal
- */
 public class ChatRoomController implements ActionListener{
     private ChatRoomUI crui;
     private ChatRoomModel crm;

@@ -9,10 +9,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Pawel
- */
 public class FriendListModel extends Thread {
 
     private Socket socket;

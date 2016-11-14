@@ -4,10 +4,6 @@ import UI.LogInUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author Dean
- */
 public class LogInController implements ActionListener {
     
     private LogInUI liui;

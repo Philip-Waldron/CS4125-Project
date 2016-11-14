@@ -1,11 +1,5 @@
 package Chat;
 
-/**
- *
- * @author Dean
- */
-
-
 public class Message {
     private String username, message;
     

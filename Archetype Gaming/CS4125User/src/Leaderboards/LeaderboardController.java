@@ -1,9 +1,5 @@
 package Leaderboards;
 
-/**
- *
- * @author Philip Waldron
- */
 import Player.User;
 import UI.LeaderboardUI;
 import java.awt.event.ActionEvent;

@@ -14,10 +14,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-/**
- *
- * @author Dean
- */
 public class LogInUI  {
 
     private JFrame frame;

@@ -2,10 +2,6 @@ package GameServer;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Dean
- */
 public class MatchMaker extends Thread {
 
     ArrayList<GamePlayer> lobbyA;

@@ -4,10 +4,6 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-/**
- *
- * @author Fergal
- */
 public class ChatServer extends Thread {
 
     public ArrayList<Socket> ConnectedSockets = new ArrayList<>();

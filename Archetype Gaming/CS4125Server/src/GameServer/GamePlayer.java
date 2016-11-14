@@ -7,10 +7,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-/**
- *
- * @author Dean
- */
 public class GamePlayer extends Thread {
 
     BufferedReader input;

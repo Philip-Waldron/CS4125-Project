@@ -6,10 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-/**
- *
- * @author Fergal
- */
 public class ChatRoom extends Thread {
 
     BufferedReader input;

@@ -17,10 +17,6 @@ import java.io.IOException;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-/**
- *
- * @author Dean
- */
 public class GameUI extends Thread {
 
     private JFrame frame;

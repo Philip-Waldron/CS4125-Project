@@ -1,9 +1,5 @@
 package Player;
 
-/**
- *
- * @author Dean
- */
 public class User {
 
     int wins = 0, draws = 0, losses = 0;

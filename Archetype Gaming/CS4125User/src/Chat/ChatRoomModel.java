@@ -11,10 +11,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Fergal
- */
 public class ChatRoomModel extends Thread {
 
     private final int port = 1234;

@@ -1,9 +1,5 @@
 package Friend;
 
-/**
- *
- * @author Pawel
- */
 public class FriendInvite {
     
     public boolean FriendInvite(String name){

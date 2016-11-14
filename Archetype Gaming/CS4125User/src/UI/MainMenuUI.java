@@ -17,10 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-/**
- *
- * @author Dean
- */
 public class MainMenuUI {
 
     private JFrame frame;

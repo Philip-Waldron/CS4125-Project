@@ -5,10 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import Player.*;
 
-/**
- *
- * @author Dean
- */
 public class UserAdd {
     User user;
     public UserAdd(User u)

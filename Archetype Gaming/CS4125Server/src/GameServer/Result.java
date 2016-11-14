@@ -1,9 +1,5 @@
 package GameServer;
 
-/**
- *
- * @author Dean
- */
 public class Result {
     String player1, player2, move1, move2, winner;
     public Result(String p1, String m1, String p2, String m2)

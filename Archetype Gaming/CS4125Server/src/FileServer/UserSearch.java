@@ -4,10 +4,7 @@ import java.io.FileReader;
 import java.util.Scanner;
 import Player.*;
 import java.io.IOException;
-/**
- *
- * @author Dean, Philip
- */
+
 public class UserSearch extends Search{
     public UserSearch(String username, String password)
     {

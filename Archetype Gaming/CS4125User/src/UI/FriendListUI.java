@@ -7,10 +7,6 @@ import java.io.*;
 import Player.User;
 import java.util.ArrayList;
 
-/**
- *
- * @author Pawel
- */
 public class FriendListUI extends Thread {
 
     public JFrame frame;

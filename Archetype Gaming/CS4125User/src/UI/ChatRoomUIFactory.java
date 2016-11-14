@@ -3,10 +3,6 @@ package UI;
 import Player.User;
 import java.io.IOException;
 
-/**
- *
- * @author Dean
- */
 public class ChatRoomUIFactory extends UIFactory {
 
     User currentUser;
