@@ -119,7 +119,6 @@ public class LeaderboardModel extends Thread {
     public void run() {
         String response;
         String wl;
-        while(!Thread.interrupted())
         try {
             response = in.readLine();
             String[] temp = response.split(",");

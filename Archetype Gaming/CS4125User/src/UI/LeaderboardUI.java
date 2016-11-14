@@ -173,7 +173,6 @@ public class LeaderboardUI extends javax.swing.JFrame {
     public void populateTable(ArrayList<String[]> entries) {
         model = (javax.swing.table.DefaultTableModel) leaderboardTable.getModel();
         model.setRowCount(0);
-        System.out.println(entries.size());
         for(int i = 0; i < entries.size(); i++) {
             String[] line = entries.get(i);
             model.addRow(line);
